@@ -53,13 +53,13 @@
                             <span class="help-block">Confirm Password</span>
                         </div>
                             <div class="checkbox">
-                                <input type="checkbox" name="accept-terms" value="1" id="accept-terms" required/>
+                                <input type="checkbox" name="fiel_name("registrationForm.agreeTerms")" value="1" id="accept-terms" required/>
                                 <label for="accept-terms">I have read and I accept the <a href="#!" target="_blank">Terms Of Use</a></label>
                             </div>
 
                         <button type="submit" class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20">Create an account</button>
                         <div class="links">
-                            <a href="/login.html">Already have an account? Click here</a>
+                            <a href={{ path("app_login") }}>Already have an account? Click here</a>
                         </div>
                         {{ form_end(registrationForm) }}
                     </div>

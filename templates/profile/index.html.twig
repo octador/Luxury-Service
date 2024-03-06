@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello ProfileController!{% endblock %}
-
+  
 {% block body %}
+
+ ²   <style>
+        select {
+            display: block!important;
+        }
+    </style>
+
 <div class="base">
 
     <!-- Page -->
@@ -58,7 +65,7 @@
                                     <option value="">Choose an option...</option>
                                     <option value="male">Male</option>
                                     <option value="female" selected="selected">Female</option>
-                                    <option value="transgender">Transgender</option>
+                                    {# <option value="transgender">Transgender</option> #}
                                 </select>
                                 <label for="gender" class="active">Gender</label>
                             </div>
