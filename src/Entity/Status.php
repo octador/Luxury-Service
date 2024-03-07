@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StatusRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StatusRepository::class)]
@@ -15,6 +17,14 @@ class Status
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
+
+    #[ORM\OneToMany(targetEntity: Apply::class, mappedBy: 'status')]
+    private Collection $applies;
+
+    public function __construct()
+    {
+        $this->applies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -29,6 +39,36 @@ class Status
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Apply>
+     */
+    public function getApplies(): Collection
+    {
+        return $this->applies;
+    }
+
+    public function addApply(Apply $apply): static
+    {
+        if (!$this->applies->contains($apply)) {
+            $this->applies->add($apply);
+            $apply->setStatus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApply(Apply $apply): static
+    {
+        if ($this->applies->removeElement($apply)) {
+            // set the owning side to null (unless already changed)
+            if ($apply->getStatus() === $this) {
+                $apply->setStatus(null);
+            }
+        }
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\JobOfferRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -49,6 +51,14 @@ class JobOffer
 
     #[ORM\ManyToOne(inversedBy: 'jobOffers')]
     private ?JobCategory $jobCategory = null;
+
+    #[ORM\OneToMany(targetEntity: Apply::class, mappedBy: 'jobOffer')]
+    private Collection $applies;
+
+    public function __construct()
+    {
+        $this->applies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -195,6 +205,36 @@ class JobOffer
     public function setJobCategory(?JobCategory $jobCategory): static
     {
         $this->jobCategory = $jobCategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Apply>
+     */
+    public function getApplies(): Collection
+    {
+        return $this->applies;
+    }
+
+    public function addApply(Apply $apply): static
+    {
+        if (!$this->applies->contains($apply)) {
+            $this->applies->add($apply);
+            $apply->setJobOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApply(Apply $apply): static
+    {
+        if ($this->applies->removeElement($apply)) {
+            // set the owning side to null (unless already changed)
+            if ($apply->getJobOffer() === $this) {
+                $apply->setJobOffer(null);
+            }
+        }
 
         return $this;
     }
