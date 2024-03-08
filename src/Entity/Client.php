@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -44,6 +45,7 @@ class Client
 
     public function __construct()
     {
+        $this->createdAt = new DateTimeImmutable();
         $this->jobOffers = new ArrayCollection();
     }
 

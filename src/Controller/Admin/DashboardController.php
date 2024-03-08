@@ -8,10 +8,13 @@ use App\Entity\Gender;
 use App\Entity\JobCategory;
 use App\Entity\JobOffer;
 use App\Entity\JobType;
+use App\Entity\Media;
 use App\Entity\Status;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -55,6 +58,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('JobCategory', 'fa-solid fa-gear', JobCategory::class);
         yield MenuItem::linkToCrud('Client', 'fa-solid fa-user-group', Client::class);
         yield MenuItem::linkToCrud('JobOffer', 'fa-solid fa-pen-nib', JobOffer::class);
+        yield MenuItem::linkToCrud('User', 'fa-solid fa-user-check', User::class);
+        yield MenuItem::linkToCrud('Media', 'fa-solid fa-photo-film', Media::class);
 
     }
 }

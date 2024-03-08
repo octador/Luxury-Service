@@ -23,14 +23,14 @@ class ClientCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            // IdField::new('id'),
+            IdField::new('id')->hideWhenCreating()->hideWhenUpdating(),
             TextField::new('societyName'),
             TextField::new('activityType'),
             TextField::new('contactName'),
             TextField::new('positionHeld'),
             TelephoneField::new('contactNumber'),
             EmailField::new('contactEmail'),
-            // DateTimeField::new('createdAt'),
+            DateTimeField::new('createdAt')->hideWhenCreating()->hideWhenUpdating(),
             TextareaField::new('note'),
         ];
     }

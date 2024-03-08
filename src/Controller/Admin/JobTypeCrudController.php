@@ -15,14 +15,14 @@ class JobTypeCrudController extends AbstractCrudController
         return JobType::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            IdField::new('id')->hideWhenCreating()->hideWhenUpdating(),
+            TextField::new('type'),
+            
         ];
     }
-    */
+    
 }

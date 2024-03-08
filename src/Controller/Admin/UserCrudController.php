@@ -2,28 +2,32 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\JobCategory;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class JobCategoryCrudController extends AbstractCrudController
+class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return JobCategory::class;
+        return User::class;
     }
 
     
     public function configureFields(string $pageName): iterable
     {
         return [
+            
             IdField::new('id')->hideWhenCreating()->hideWhenUpdating(),
-            TextField::new('category'),
-          
+            TextField::new('email'),
+            TextField::new('password')->hideWhenCreating()->hideWhenUpdating(),
+            DateTimeField::new('createdAt')->hideWhenCreating()->hideWhenUpdating(),
+
         ];
     }
-
+    
 
 }

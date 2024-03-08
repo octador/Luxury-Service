@@ -7,8 +7,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -26,20 +28,18 @@ class JobOfferCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            // IdField::new('id'),
-            TextField::new('reference'),
-            TextField::new('client'),
+            IdField::new('id')->hideWhenCreating()->hideWhenUpdating(),
+            NumberField::new('reference'),
+            AssociationField::new('client'),
             TextEditorField::new('description'),
             TextareaField::new('jobNote'),
             TextField::new('jobtitle'),
             AssociationField::new('jobType'),
-            AssociationField::new('category'),
+            AssociationField::new('jobCategory'),
             TextField::new('location'),
             IntegerField::new('salary'),
-            TextField::new('closingDate'),
+            DateField::new('closingDate'),
             BooleanField::new('isAvailable'),
-            
-            
         ];
     }
     
