@@ -54,7 +54,7 @@
             </div>
         </section>
 
-        <form
+       
         {{ form_start(form) }}
 
             <section class="section-padding">
@@ -62,11 +62,15 @@
                     <div class="row">
                         <h3 class="text-extrabold">Your personal informations</h3>
                         <div class="col-xs-12 col-sm-6 col-md-4">
+                        
                             <div class="input-field">
-                                {{ form_row(form.gender,{
+                            <label for="gender" class="active">Gender</label>
+                                   {{ form_label(form.gender, ' ') }}
+                                {{ form_widget(form.gender,{
                                     'attr':{
+                                        
                                         'method' :"POST",
-                                    ' action' :"#!" ,
+                                        'action' :"#!" ,
                                         'accept-charset' :"UTF-8",
                                         'id':"candidateForm", 
                                         'role' :"form", 
@@ -78,23 +82,37 @@
                                     }
                                                 
                                 }) }}
-                       
-
-                                <label for="gender" class="active">Gender</label>
-
                             </div>
                         </div>
                         <div class="clearfix visible-sm"></div>
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="input-field">
-                                <input type="text" class="form-control" name="first_name" id="first_name" value="" required>
-                                <label for="first_name">First name</label>
+                                
+                                {{ form_widget(form.firstName, {
+                                    'type': 'text',
+                                    'label': 'First Name',
+                                    'attr': {
+                                        'class': 'form-control active',
+                                        'name': 'first_name',
+                                        'id': 'first_name',
+                                        'required': '',
+                                    },
+                                }) }}
+                                
+                                    {{ form_label(form.firstName, 'First Name', 
+                                                            {'label_attr': 
+                                                            {'for': 'first_name'}}) }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="input-field">
+
                                 <input type="text" class="form-control" name="last_name" id="last_name" value="" required>
+                            
                                 <label for="last_name">Last name</label>
+                            
+                            
+                            
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -267,9 +285,9 @@
 
                 </div>
             </section>
-        </form>
-
+        
     </div>
 
 </div>
+{{ form_end(form) }}
 {% endblock %}
