@@ -44,9 +44,9 @@ class LuxuryServiceAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-
+        
         // For example: !!!!! ne pas oublier de changer la route vers profile !!!!!
-         return new RedirectResponse($this->urlGenerator->generate('app_profile'));
+         return new RedirectResponse($this->urlGenerator->generate('app_login'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

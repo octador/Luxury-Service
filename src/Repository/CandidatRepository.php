@@ -24,6 +24,7 @@ class CandidatRepository extends ServiceEntityRepository
     //    /**
     //     * @return Candidat[] Returns an array of Candidat objects
     //     */
+    
     //    public function findByExampleField($value): array
     //    {
     //        return $this->createQueryBuilder('c')
@@ -36,13 +37,13 @@ class CandidatRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Candidat
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+       public function findOneByUserId($value): ?Candidat
+       {
+           return $this->createQueryBuilder('candidat')
+               ->andWhere('candidat.user = :val')
+               ->setParameter('val', $value)
+               ->getQuery()
+               ->getOneOrNullResult()
+           ;
+       }
 }

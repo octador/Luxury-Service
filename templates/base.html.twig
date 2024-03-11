@@ -100,9 +100,13 @@
                     </div>
                     <div class="icon-wrapper">
                         <span class="account">
-							<a href={{ path("app_profile") }}>
+                        {% if app.user %}
+                            <a href={{ path("app_profile",{ id: app.user.id }) }}>
                                 <i class="material-icons">&#xE7FD;</i>
                             </a>
+
+                        {% endif %}
+							
 						</span>
                     </div>
                     <div class="nav-overlay" id="overlay">
@@ -113,25 +117,37 @@
                                 <li><a href= {{ path("app_compagnie") }}>About Us</a></li>
                                 <li><a href={{ path("app_contact") }}>Contact</a></li>
                                 <li>-</li>
-                                <li><a href={{ path("app_profile") }}>Profile</a></li>
-                                <li><a href="/logout.html">Logout</a></li>
+                                {% if app.user %}
+                                    <li><a href={{ path("app_profile", {id: app.user.id}) }}>Profile</a></li>
+                                    <li><a href="/logout.html">Logout</a></li>
+                                    {% else %}
+                                    <li><a href="{{path('app_login')}}">Login</a></li>
+                                {% endif %}
+                                
                             </ul>
                         </nav>
                     </div>
                 </div>
+
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="menuzord-menu pull-right light" role="navigation">
-                        <li class=" dropdown">
-                            <a target="_self" href={{ path('app_login') }}>
+                        {% if app.user %}
+                            <li><a href="{{path('app_logout')}}">Logout</a></li>
+                            <li><a href="{{path('app_profile',{id: app.user.id})}}">Profile</a></li>
+                        {% else %}
+                            <li class=" dropdown">
+                                <a target="_self" href={{ path('app_login') }}>
                                 <span>Login</span>
-                            </a>
-                        </li>
-                        <li class=" dropdown">
-                            <a target="_self" href={{ path('app_register') }} class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
-                                <span>Sign Up</span>
-                            </a>
+                                </a>
+                            </li>
 
-                        </li>
+                            <li class=" dropdown">
+                                <a target="_self" href={{ path('app_register') }} class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
+                                <span>Sign Up</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                      
                     </ul>
                     <ul class="menuzord-menu pull-right light" role="navigation">
                         <li class="active dropdown">
