@@ -47,7 +47,7 @@ class Candidat
     private ?Media $profilPicture = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $brithDate = null;
+    private ?\DateTimeInterface $birthDate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $birthPlace = null;
@@ -209,14 +209,14 @@ class Candidat
         return $this;
     }
 
-    public function getBrithDate(): ?\DateTimeInterface
+    public function getBirthDate(): ?\DateTimeInterface
     {
-        return $this->brithDate;
+        return $this->birthDate;
     }
 
-    public function setBrithDate(?\DateTimeInterface $brithDate): static
+    public function setBirthDate(?\DateTimeInterface $birthDate): static
     {
-        $this->brithDate = $brithDate;
+        $this->birthDate = $birthDate;
 
         return $this;
     }
@@ -226,9 +226,9 @@ class Candidat
         return $this->birthPlace;
     }
 
-    public function setBirthPlace(?string $birthPlace): static
+    public function setBirthPlace(?string $birthDate): static
     {
-        $this->birthPlace = $birthPlace;
+        $this->birthPlace = $birthDate;
 
         return $this;
     }

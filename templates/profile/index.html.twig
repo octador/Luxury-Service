@@ -213,23 +213,21 @@
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="input-field">
                                         
-                                        {# {{ form_widget(form.birthDate, {
+                                        {{ form_widget(form.birthDate, {
                                             'attr': {
                                                 'class': 'form-control', 
                                                 'name': 'birthDate',
                                                 'placeholder': 'YYYY-MM-DD',  
                                             }
                                         }) }}
-
-                                        {{ form_label(form.birthDate, ' BirthDate', 
-                                                            {'label_attr': 
-                                                            {'for': 'birthDate'}}) }} #}
-        
+                                        <label for="Birth_date">BirthDate</label>
+                                        {{ form_label(form.birthDate, ' ') }} 
                                     </div>
                                 </div>
 
                                <div class="col-xs-12 col-sm-6">
                                     <div class="input-field">
+                                        <label for="birth_place">Birthplace</label>
                                          {{ form_widget(form.birthPlace, {
                                             'attr': {
                                                 'class': 'form-control', 
@@ -238,12 +236,10 @@
                                             }
                                         }) }}
 
-                                        {{ form_label(form.birthPlace, ' birthPlace', 
-                                                            {'label_attr': 
-                                                            {'for': 'birthPlace'}}) }}
+                                        {{ form_label(form.birthPlace , ' ' ) }}
 
                                         {#  <input id="birth_place" name="birth_place" type="text" value="">
-                                        <label for="birth_place">Birthplace</label>
+                                        
                                     </div>
                                 </div> #}
                             </div>
@@ -254,8 +250,10 @@
                         <div class="col-xs-12 col-sm-6">
 
                             <div class="card card-panel passport">
+
                                 <div class="file-field input-field">
-                                    <div class="btn btn-lg primary waves-effect waves-light">
+                                    {{ form_row(form.password,'Password') }}
+                                    {# <div class="btn btn-lg primary waves-effect waves-light">
                                         <span><i class="material-icons">&#xE24D;</i> Passport</span>
                                         <input id="passport" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="passport" type="file">
                                     </div>
@@ -264,7 +262,7 @@
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text" placeholder="Upload your passport" readonly>
-                                    </div>
+                                    </div> #}
                                 </div>
 
                                 <div class="file-field input-field">
@@ -287,32 +285,49 @@
                         <div class="col-xs-12 col-sm-6">
                             <div class="col-xs-12 col-sm-12">
                                 <div class="input-field" style="margin-top: 5px;">
-                                    <select id="job_sector" name="job_sector[]" multiple data-placeholder="Type in or Select job sector you would be interested in.">
-                                        <option value="">Choose an option...</option>
-                                        <option value="">job sector</option>
-                                    </select>
+                                {{ form_widget(form.jobCategory,{
+                                    'attr':{
+                                            'id':'job_sector',
+                                            'name':'job_sector[]',
+                                           ' multiple data-placeholder':'Type in or Select job sector you would be interested in.'
+                                    }
+                                }) }}
+                                   
                                     <label for="job_sector" class="active">Interest in job sector</label>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12">
                                 <div class="input-field">
-                                    <select id="experience" ="" name="experience">
-                                        <option value="">Choose</option>
-                                        <option value="3m">0 - 6 month</option>
-                                        <option value="6m">6 month - 1 year</option>
-                                        <option value="1y">1 - 2 years</option>
-                                        <option value="2y">2+ years</option>
-                                        <option value="5y" selected="selected">5+ years</option>
-                                        <option value="10y">10+ years</option>
-                                    </select>
-                                    <label for="experience" class="active">Experience</label>
+
+                                {{ form_widget(form.experience,{
+                                    'attr':{
+                                        'id':"experience", 
+                                        'data-parsley-validate': "true" ,
+                                        'enctype' :"multipart/form-data",
+                                    }
+                                                
+                                }) }}
+                            {{ form_label(form.experience,' ') }}
+                            <label for="experience" class="active">Experience</label>
+                                    
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12">
                             <div class="input-field">
-                                <textarea class="materialize-textarea" id="description" name="description" cols="50" rows="10"></textarea>
-                                <label for="description">Short description for your profile, as well as more personnal informations (e.g. your hobbies/interests ). You can also paste any link you want.</label>
+
+                            {{ form_widget(form.shortDescription,{
+                                'attr':{
+                                    'class':'materialize-textarea',
+                                    'id':'description',
+                                    'name':'description',
+                                    'cols':'50',
+                                    'rows':'10',
+
+                                }
+                            }) }}
+
+                            {{ form_label(form.shortDescription, 'Short description for your profile, as well as more personnal informations (e.g. your hobbies/interests ). You can also paste any link you want') }}
                             </div>
                         </div>
                     </div>

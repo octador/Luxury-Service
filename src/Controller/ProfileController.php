@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\Candidat;
+use App\Entity\Media;
 use App\Entity\User;
 use App\Form\CandidatType;
 use App\Repository\CandidatRepository;
@@ -18,9 +18,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class ProfileController extends AbstractController
 {
     #[Route('/profile/{id}', name: 'app_profile')]
-    public function index(CandidatRepository $candidatRepository, User $user,EntityManagerInterface $entityManager,Request $request): Response
+    public function index(CandidatRepository $candidatRepository, User $user,EntityManagerInterface $entityManager,Request $request,): Response
     {
-        
+        $passport = new Media();
+        $form = $this->createForm(Media::class, $passport);
+        $form->handleRequest($request);
+dd($request);
+
+
         $id = $user->getId();
         $candidat = $candidatRepository->findOneByUserId($id);
 
