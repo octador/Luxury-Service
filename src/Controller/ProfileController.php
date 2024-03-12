@@ -29,14 +29,19 @@ class ProfileController extends AbstractController
             $candidat->setUser($user);
             $candidat->setCreatedAt(new DateTimeImmutable());
             $candidat->setIsAvailable(true);
-            // dd($candidat);
             $entityManager->persist($candidat);
             $entityManager->flush();
         }
 
         $form = $this->createForm(CandidatType::class, $candidat);
         $form->handleRequest($request);
-         
+      
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $candidat->setUpdatedAt(new DateTimeImmutable());
+            $entityManager->flush();
+        }
+          
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
             'form'=> $form,

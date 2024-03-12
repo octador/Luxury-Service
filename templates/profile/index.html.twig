@@ -55,7 +55,17 @@
         </section>
 
        
-        {{ form_start(form) }}
+      {{ form_start(form,{
+                            'attr':{
+                                'id':'candidateForm',
+                                'method' :'POST',
+                                'role':'form',
+                                'accept-char':'UTF-8',
+                                'autocomplete': 'off',
+                                'data-parsley-validate':'true',
+                                'enctype':"multipart/form-data"
+                            }
+                        }) }}
 
             <section class="section-padding">
                 <div class="container">
@@ -65,20 +75,14 @@
                         
                             <div class="input-field">
                             <label for="gender" class="active">Gender</label>
-                                   {{ form_label(form.gender, ' ') }}
+                            
+                                   {# {{ form_label(form.gender, ' ') }} #}
+
                                 {{ form_widget(form.gender,{
                                     'attr':{
-                                        
-                                        'method' :"POST",
-                                        'action' :"#!" ,
-                                        'accept-charset' :"UTF-8",
-                                        'id':"candidateForm", 
-                                        'role' :"form", 
+                                        'id':"gender", 
                                         'data-parsley-validate': "true" ,
                                         'enctype' :"multipart/form-data",
-                                        'name' :"_token" ,
-                                        'type' :"hidden" ,
-                                        'value' :"UYfchy67WuTVzhSsatPK1RDZEIfgqpKCcLnLyhf8a",
                                     }
                                                 
                                 }) }}
@@ -95,10 +99,9 @@
                                         'class': 'form-control active',
                                         'name': 'first_name',
                                         'id': 'first_name',
-                                        'required': '',
+                                        '':'true',
                                     },
                                 }) }}
-                                
                                     {{ form_label(form.firstName, 'First Name', 
                                                             {'label_attr': 
                                                             {'for': 'first_name'}}) }}
@@ -107,24 +110,61 @@
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="input-field">
 
-                                <input type="text" class="form-control" name="last_name" id="last_name" value="" required>
-                            
-                                <label for="last_name">Last name</label>
-                            
-                            
-                            
+                            {{ form_widget(form.lastName, {
+                                    'type': 'text',
+                                    'label': 'Last Name',
+                                    'attr': {
+                                        'class': 'form-control active',
+                                        'name': 'last_name',
+                                        'id': 'last_name',
+                                        '':'true',
+                                    },
+                                }) }}
+                                
+                                    {{ form_label(form.lastName, 'Last Name', 
+                                                            {'label_attr': 
+                                                            {'for': 'last_name'}}) }}
                             </div>
                         </div>
+                        
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="input-field">
-                                <input required="required" id="current_location" name="current_location" type="text" value="">
-                                <label for="current_location">Current location</label>
+
+                            {{ form_widget(form.country, {
+                                    'type': 'text',
+                                    'label': 'country',
+                                    'attr': {
+                                        'class': 'form-control active',
+                                        'name': 'current_location',
+                                        'id': 'country',
+                                        '':'true',
+                                    },
+                                }) }}
+                                
+                                    {{ form_label(form.country, ' country', 
+                                                            {'label_attr': 
+                                                            {'for': 'current_location'}}) }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-8">
                             <div class="input-field">
-                                <input id="address" name="address" type="text" value="">
-                                <label for="address">Address</label>
+
+
+                            {{ form_widget(form.adress, {
+                                    'type': 'text',
+                                    'label': 'counadresstry',
+                                    'attr': {
+                                        'class': 'form-control active',
+                                        'name': 'adress',
+                                        'id': 'adress',
+                                        '':'true',
+                                    },
+                                }) }}
+                                
+                                    {{ form_label(form.adress, ' adress', 
+                                                            {'label_attr': 
+                                                            {'for': 'adress'}}) }}
+
                             </div>
                         </div>
                     </div>
@@ -133,12 +173,16 @@
                             <div class="file-field input-field"
                                  style="margin-top: 32px;">
                                 <div class="btn btn-lg primary waves-effect waves-light">
+
                                     <span><i class="material-icons">insert_photo</i> Photo</span>
                                     <input id="photo" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="photo" type="file">
+                                    
                                 </div>
 
                                 <div class="existing-file">
+
                                     <a href="#!" target="_blank"><i class="material-icons">&#xE24D;</i> profil_picture.jpg</a>
+
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" placeholder="Upload your ID photo" readonly>
@@ -149,28 +193,59 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="input-field">
-                                        <input id="country" name="country" type="text" value="">
-                                        <label for="country">Country</label>
+                                    {{ form_widget(form.nationality, {
+                                    'type': 'text',
+                                    'label': 'nationality',
+                                    'attr': {
+                                        'class': 'form-control active',
+                                        'name': 'nationality',
+                                        'id': 'nationality',
+                                        '':'true',
+                                    },
+                                }) }}
+                                
+                                    {{ form_label(form.nationality, ' nationality', 
+                                                            {'label_attr': 
+                                                            {'for': 'nationality'}}) }}
                                     </div>
                                 </div>
+
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="input-field">
-                                        <input id="nationality" name="nationality" type="text" value="">
-                                        <label for="nationality">Nationality</label>
+                                        
+                                        {# {{ form_widget(form.birthDate, {
+                                            'attr': {
+                                                'class': 'form-control', 
+                                                'name': 'birthDate',
+                                                'placeholder': 'YYYY-MM-DD',  
+                                            }
+                                        }) }}
+
+                                        {{ form_label(form.birthDate, ' BirthDate', 
+                                                            {'label_attr': 
+                                                            {'for': 'birthDate'}}) }} #}
+        
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+
+                               <div class="col-xs-12 col-sm-6">
                                     <div class="input-field">
-                                        <input class="datepicker" id="birth_date" name="birth_date" type="text" value="">
-                                        <label for="birth_date">Birthdate</label>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6">
-                                    <div class="input-field">
-                                        <input id="birth_place" name="birth_place" type="text" value="">
+                                         {{ form_widget(form.birthPlace, {
+                                            'attr': {
+                                                'class': 'form-control', 
+                                                'name': 'birthPlace',
+                                                'placeholder': ' ',  
+                                            }
+                                        }) }}
+
+                                        {{ form_label(form.birthPlace, ' birthPlace', 
+                                                            {'label_attr': 
+                                                            {'for': 'birthPlace'}}) }}
+
+                                        {#  <input id="birth_place" name="birth_place" type="text" value="">
                                         <label for="birth_place">Birthplace</label>
                                     </div>
-                                </div>
+                                </div> #}
                             </div>
                         </div>
                     </div>
@@ -221,7 +296,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-12">
                                 <div class="input-field">
-                                    <select id="experience" required="required" name="experience">
+                                    <select id="experience" ="" name="experience">
                                         <option value="">Choose</option>
                                         <option value="3m">0 - 6 month</option>
                                         <option value="6m">6 month - 1 year</option>
@@ -250,7 +325,7 @@
                         <h3 class="text-extrabold">Your K-Yachting account</h3>
                         <div class="col-xs-12 col-sm-4">
                             <div class="input-field">
-                                <input required="required" id="email" name="email" type="email" value="">
+                                <input ="" id="email" name="email" type="email" value="">
                                 <label for="email">Email</label>
                             </div>
                         </div>
