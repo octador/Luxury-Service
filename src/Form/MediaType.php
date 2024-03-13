@@ -14,7 +14,6 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('url')
             ->add('name', FileType:: class, [
                  // unmapped means that this field is not associated to any entity property
                  'mapped' => true,
@@ -33,7 +32,6 @@ class MediaType extends AbstractType
                      ])
                  ],
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

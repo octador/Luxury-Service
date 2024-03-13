@@ -79,6 +79,7 @@ class Candidat
     #[ORM\OneToMany(targetEntity: Apply::class, mappedBy: 'candidat')]
     private Collection $applies;
 
+
     public function __construct()
     {
         $this->applies = new ArrayCollection();

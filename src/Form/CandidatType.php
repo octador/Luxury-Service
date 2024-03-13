@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Required;
 
 class CandidatType extends AbstractType
 {
@@ -37,43 +38,19 @@ class CandidatType extends AbstractType
                 'class' => Gender::class,
                 'choice_label' => 'gender',
             ])
-            // ------------------------------------------------------------------------------
-            ->add('passport', EntityType::class, [
-                'class' => Media::class,
-                'label' => 'passport',
+            ->add('passportfile', FileType::class, [
                 'mapped' => false,
-                'required' => false,
-                'attr'=>[
-                    'size'=>20000000,
-                    'accept' => '.pdf,.jpg,.doc,.docx,.png',
-                ]
-                // 'constraints' => [
-                //     new File([
-                //         'maxSize' => '1024k',
-                //         'mimeTypes' => [
-                //             'application/pdf',
-                //             'application/x-pdf',
-                //         ],
-                //         'mimeTypesMessage' => 'Please upload a valid PDF document',
-                //     ])
-                // ],
+                'required' => false
             ])
-            // ->add('passport', EntityType::class, [
-            //     'class' => Media::class,
-            //     'choice_label' => 'id',
-            // ])
-            // ------------------------------------------------------------
-          
+            ->add('cvfile', FileType::class, [
+                'mapped' => false,
+                'required' => false
+            ])
 
-
-            // ->add('cv', FileType::class, [
-            //     // 'class' => Media::class,
-            //     // 'choice_label' => 'id',
-            // ])
-            // ->add('profilPicture', FileType::class, [
-            //     // 'class' => Media::class,
-            //     // 'choice_label' => 'id',
-            // ])
+            ->add('profilPicture', FileType::class, [
+                'mapped' => false,
+                'required' => false
+            ])
             ->add('jobCategory', EntityType::class, [
                 'class' => JobCategory::class,
                 'choice_label' => 'category',

@@ -252,10 +252,19 @@
                                     <div class="btn btn-lg primary waves-effect waves-light">
                                         <span><i class="material-icons">&#xE24D;</i> Passport</span>
 
-                                      {{ form_widget(form.passport) }}
+                                      {{ form_widget(form.passportfile,
+                                            {
+                                            'type': 'file',
+                                            'attr': {
+                                                'class': 'form-control active',
+                                                'name': 'passport',
+                                                'id': 'passport',
+                                                'size':'20000000',
+                                                'accept':'.pdf,.jpg,.doc,.docx,.png,.gif',                                   
+                                                }
 
-                                        {# <input id="passport" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="passport" type="file"> #}
-
+                                            }) 
+                                            }}
                                     </div>
 
                                     {# <div class="existing-file">
@@ -272,16 +281,30 @@
                                 </div>
 {# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!cv NE MARCHE PAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #}
                                 <div class="file-field input-field">
+                                <div class="btn btn-lg primary waves-effect waves-light">
+                                    {{ form_widget(form.cvfile, {
+                                            'type': 'file',
+                                            'attr': {
+                                                'class': 'form-control active',
+                                                'name': 'passport',
+                                                'id': 'passport',
+                                                'size':'20000000',
+                                                'accept':'.pdf,.jpg,.doc,.docx,.png,.gif',                                   
+                                                }
 
-                                    <div class="btn btn-lg primary waves-effect waves-light">
+                                            }) 
+                                            }}
+                                    
                                         <span><i class="material-icons">&#xE24D;</i> CV</span>
-                                        <input id="cv" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="cv" type="file">
+                                        
 
                                     </div>
 
                                     <div class="existing-file">
-                                        <a href="#!" target="_blank"><i class="material-icons">&#xE24D;</i> CV.pdf</a>
+                                       <a href="{{ asset('uploads/passport/' ~ candidat.cv.name?candidat.cv.name:'c\'est de la merde ton code') }}" target="_blank">
+                                       <i class="material-icons">&#xE24D;</i> {{candidat.cv.name}}</a>
                                     </div>
+
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text" placeholder="Upload your Curriculum Vitae" readonly>
                                     </div>
