@@ -53,45 +53,40 @@
                 </div>
             </div>
         </section>
-
-       
-      {{ form_start(form,{
-                            'attr':{
-                                'id':'candidateForm',
-                                'method' :'POST',
-                                'role':'form',
-                                'accept-char':'UTF-8',
-                                'autocomplete': 'off',
-                                'data-parsley-validate':'true',
-                                'enctype':"multipart/form-data"
-                            }
-                        }) }}
-
+ 
+{{ form_start(form,{
+    'attr':{
+        'id':'candidateForm',
+        'method' :'POST',
+        'role':'form',
+        'accept-char':'UTF-8',
+        'autocomplete': 'off',
+        'data-parsley-validate':'true',
+        'enctype':"multipart/form-data"
+    } }) 
+ }}
             <section class="section-padding">
                 <div class="container">
                     <div class="row">
                         <h3 class="text-extrabold">Your personal informations</h3>
+{# ----------------------------gender marche------------------------ #}
                         <div class="col-xs-12 col-sm-6 col-md-4">
-                        
                             <div class="input-field">
                             <label for="gender" class="active">Gender</label>
-                            
-                                   {# {{ form_label(form.gender, ' ') }} #}
-
+                                {{ form_label(form.gender, ' ') }}
                                 {{ form_widget(form.gender,{
                                     'attr':{
                                         'id':"gender", 
                                         'data-parsley-validate': "true" ,
                                         'enctype' :"multipart/form-data",
-                                    }
-                                                
+                                    }               
                                 }) }}
                             </div>
                         </div>
+{# -----------------------------firstname marche---------------------- #}
                         <div class="clearfix visible-sm"></div>
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="input-field">
-                                
                                 {{ form_widget(form.firstName, {
                                     'type': 'text',
                                     'label': 'First Name',
@@ -100,74 +95,76 @@
                                         'name': 'first_name',
                                         'id': 'first_name',
                                         '':'true',
-                                    },
-                                }) }}
-                                    {{ form_label(form.firstName, 'First Name', 
-                                                            {'label_attr': 
-                                                            {'for': 'first_name'}}) }}
+                                    },})
+                                }}
+                                {{ form_label(form.firstName, 'First Name', 
+                                    {'label_attr': 
+                                    {'for': 'first_name'}
+                                    }) 
+                                }}
                             </div>
                         </div>
+{# -----------------------------lasstname marche-------------------------------- #}
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="input-field">
-
-                            {{ form_widget(form.lastName, {
-                                    'type': 'text',
-                                    'label': 'Last Name',
-                                    'attr': {
-                                        'class': 'form-control active',
-                                        'name': 'last_name',
-                                        'id': 'last_name',
-                                        '':'true',
-                                    },
-                                }) }}
-                                
+                                    {{ form_widget(form.lastName, {
+                                        'type': 'text',
+                                        'label': 'Last Name',
+                                        'attr': {
+                                            'class': 'form-control active',
+                                            'name': 'last_name',
+                                            'id': 'last_name',
+                                            '':'true',
+                                        },}) 
+                                    }}
                                     {{ form_label(form.lastName, 'Last Name', 
-                                                            {'label_attr': 
-                                                            {'for': 'last_name'}}) }}
+                                                                {'label_attr': 
+                                                                {'for': 'last_name'
+                                                                }}) 
+                                    }}
                             </div>
                         </div>
-                        
+ {# ------------------------country marche------------------------------------#}
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="input-field">
-
-                            {{ form_widget(form.country, {
+                                {{ form_widget(form.country, {
                                     'type': 'text',
                                     'label': 'country',
                                     'attr': {
                                         'class': 'form-control active',
                                         'name': 'current_location',
                                         'id': 'country',
-                                        '':'true',
-                                    },
-                                }) }}
-                                
-                                    {{ form_label(form.country, ' country', 
-                                                            {'label_attr': 
-                                                            {'for': 'current_location'}}) }}
+                                        },
+                                    }) 
+                                }}    
+                                {{ form_label(form.country, ' country', 
+                                                {'label_attr': 
+                                                            {'for': 'current_location'
+                                                            }})
+                                }}
                             </div>
                         </div>
+{# ------------------------------adress marche----------------------------- #}
                         <div class="col-xs-12 col-sm-8">
                             <div class="input-field">
-
-
-                            {{ form_widget(form.adress, {
-                                    'type': 'text',
-                                    'label': 'counadresstry',
-                                    'attr': {
-                                        'class': 'form-control active',
-                                        'name': 'adress',
-                                        'id': 'adress',
-                                        '':'true',
-                                    },
-                                }) }}
-                                
-                                    {{ form_label(form.adress, ' adress', 
-                                                            {'label_attr': 
-                                                            {'for': 'adress'}}) }}
-
+                                {{ form_widget(form.adress, {
+                                        'type': 'text',
+                                        'label': 'counadresstry',
+                                        'attr': {
+                                            'class': 'form-control active',
+                                            'name': 'adress',
+                                            'id': 'adress',
+                                        },}) 
+                                }}
+                                {{ form_label(form.adress, ' adress', 
+                                                            {'attr': 
+                                                                {'for': 'adress'}
+                                                            }) 
+                                }}
                             </div>
                         </div>
                     </div>
+{# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!insertphoto NE MARCE PAS!!!!!!!!!!!!!!!!!!!!!!!!!!              #}
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="file-field input-field"
@@ -178,7 +175,7 @@
                                     <input id="photo" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="photo" type="file">
                                     
                                 </div>
-
+{# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!profilePicture NE MARCE PAS!!!!!!!!!!!!!!!!!!!!!!!!!!              #}
                                 <div class="existing-file">
 
                                     <a href="#!" target="_blank"><i class="material-icons">&#xE24D;</i> profil_picture.jpg</a>
@@ -189,42 +186,43 @@
                                 </div>
                             </div>
                         </div>
+{# -----------------------------nationality marche--------------------------------------------- #}
                         <div class="col-xs-12 col-sm-6 col-md-8">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="input-field">
-                                    {{ form_widget(form.nationality, {
-                                    'type': 'text',
-                                    'label': 'nationality',
-                                    'attr': {
-                                        'class': 'form-control active',
-                                        'name': 'nationality',
-                                        'id': 'nationality',
-                                        '':'true',
-                                    },
-                                }) }}
-                                
-                                    {{ form_label(form.nationality, ' nationality', 
-                                                            {'label_attr': 
-                                                            {'for': 'nationality'}}) }}
+                                        {{ form_widget(form.nationality, {
+                                            'type': 'text',
+                                            'label': 'nationality',
+                                            'attr': {
+                                                'class': 'form-control active',
+                                                'name': 'nationality',
+                                                'id': 'nationality',
+                                                '':'true',
+                                            },}) 
+                                        }}
+                                        {{ form_label(form.nationality, ' nationality', 
+                                            {'attr': 
+                                                    {'for': 'nationality'
+                                                    }})
+                                        }}
                                     </div>
                                 </div>
-
+{# ---------------------------------------birthDate marche---------------------- #}
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="input-field">
-                                        
                                         {{ form_widget(form.birthDate, {
                                             'attr': {
                                                 'class': 'form-control', 
                                                 'name': 'birthDate',
                                                 'placeholder': 'YYYY-MM-DD',  
-                                            }
-                                        }) }}
+                                            }}) 
+                                        }}
                                         <label for="Birth_date">BirthDate</label>
                                         {{ form_label(form.birthDate, ' ') }} 
                                     </div>
                                 </div>
-
+{# ------------------------------------Birthplace marche------------------------------ #}
                                <div class="col-xs-12 col-sm-6">
                                     <div class="input-field">
                                         <label for="birth_place">Birthplace</label>
@@ -237,38 +235,48 @@
                                         }) }}
 
                                         {{ form_label(form.birthPlace , ' ' ) }}
-
-                                        {#  <input id="birth_place" name="birth_place" type="text" value="">
-                                        
                                     </div>
-                                </div> #}
+                                </div> 
                             </div>
                         </div>
                     </div>
+
                     <div class="row mt-40">
                         <h3 class="text-extrabold">Your professional profile</h3>
                         <div class="col-xs-12 col-sm-6">
-
+{# !!!!!!!!!!!!!!!!!!!!!!Passport NE MARHCE PAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #}
                             <div class="card card-panel passport">
 
                                 <div class="file-field input-field">
-                                    {{ form_row(form.password,'Password') }}
-                                    {# <div class="btn btn-lg primary waves-effect waves-light">
+
+                                    <div class="btn btn-lg primary waves-effect waves-light">
                                         <span><i class="material-icons">&#xE24D;</i> Passport</span>
-                                        <input id="passport" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="passport" type="file">
+
+                                      {{ form_widget(form.passport) }}
+
+                                        {# <input id="passport" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="passport" type="file"> #}
+
                                     </div>
-                                    <div class="existing-file">
+
+                                    {# <div class="existing-file">
+
                                         <a href="#!" target="_blank"><i class="material-icons">&#xE24D;</i> passeport.jpg</a>
+
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text" placeholder="Upload your passport" readonly>
+
+                                        <input class="file-path validate" type="text" placeholder="Upload your 
+                                        passport" readonly>
+                                   
                                     </div> #}
                                 </div>
-
+{# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!cv NE MARCHE PAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #}
                                 <div class="file-field input-field">
+
                                     <div class="btn btn-lg primary waves-effect waves-light">
                                         <span><i class="material-icons">&#xE24D;</i> CV</span>
                                         <input id="cv" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="cv" type="file">
+
                                     </div>
 
                                     <div class="existing-file">
@@ -281,7 +289,7 @@
 
                             </div>
                         </div>
-
+{# ------------------------------------------jobCategory marche--------------------------- #}
                         <div class="col-xs-12 col-sm-6">
                             <div class="col-xs-12 col-sm-12">
                                 <div class="input-field" style="margin-top: 5px;">
@@ -290,44 +298,40 @@
                                             'id':'job_sector',
                                             'name':'job_sector[]',
                                            ' multiple data-placeholder':'Type in or Select job sector you would be interested in.'
-                                    }
-                                }) }}
-                                   
+                                    }}) 
+                                }}
                                     <label for="job_sector" class="active">Interest in job sector</label>
                                 </div>
                             </div>
+{# ----------------------------experience marche----------------------------------------------- #}
                             <div class="col-xs-12 col-sm-12">
                                 <div class="input-field">
-
                                 {{ form_widget(form.experience,{
                                     'attr':{
                                         'id':"experience", 
                                         'data-parsley-validate': "true" ,
                                         'enctype' :"multipart/form-data",
-                                    }
-                                                
-                                }) }}
+                                    }}) 
+                                }}
                             {{ form_label(form.experience,' ') }}
                             <label for="experience" class="active">Experience</label>
-                                    
                                 </div>
                             </div>
                         </div>
+{# ------------------------------------shortDescription marche-------------------------------- #}
                         <div class="col-xs-12 col-sm-12">
                             <div class="input-field">
+                                {{ form_widget(form.shortDescription,{
+                                    'attr':{
+                                        'class':'materialize-textarea',
+                                        'id':'description',
+                                        'name':'description',
+                                        'cols':'50',
+                                        'rows':'10',
 
-                            {{ form_widget(form.shortDescription,{
-                                'attr':{
-                                    'class':'materialize-textarea',
-                                    'id':'description',
-                                    'name':'description',
-                                    'cols':'50',
-                                    'rows':'10',
-
-                                }
-                            }) }}
-
-                            {{ form_label(form.shortDescription, 'Short description for your profile, as well as more personnal informations (e.g. your hobbies/interests ). You can also paste any link you want') }}
+                                    }}) 
+                                }}
+                                {{ form_label(form.shortDescription, 'Short description for your profile, as well as more personnal informations (e.g. your hobbies/interests ). You can also paste any link you want') }}
                             </div>
                         </div>
                     </div>
@@ -344,6 +348,7 @@
                                 <label for="email">Email</label>
                             </div>
                         </div>
+{# --------------------------password---------------------------------------------- #}
                         <div class="col-xs-12 col-sm-4">
                             <div class="input-field">
                                 <input id="password" name="password" type="password" value="">
@@ -376,7 +381,7 @@
                 </div>
             </section>
         
-    </div>
+</div>
 
 </div>
 {{ form_end(form) }}

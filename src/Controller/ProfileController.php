@@ -5,6 +5,7 @@ use App\Entity\Candidat;
 use App\Entity\Media;
 use App\Entity\User;
 use App\Form\CandidatType;
+use App\Form\MediaType;
 use App\Repository\CandidatRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManager;
@@ -21,14 +22,11 @@ class ProfileController extends AbstractController
     public function index(CandidatRepository $candidatRepository, User $user,EntityManagerInterface $entityManager,Request $request,): Response
     {
         $passport = new Media();
-        $form = $this->createForm(Media::class, $passport);
-        $form->handleRequest($request);
-dd($request);
-
-
+        // $form = $this->createForm(MediaType::class, $passport);
+        
         $id = $user->getId();
         $candidat = $candidatRepository->findOneByUserId($id);
-
+        
         if (!$candidat) {
             $candidat = new Candidat;
             $candidat->setUser($user);
@@ -37,10 +35,12 @@ dd($request);
             $entityManager->persist($candidat);
             $entityManager->flush();
         }
-
+        
+        
         $form = $this->createForm(CandidatType::class, $candidat);
         $form->handleRequest($request);
-      
+        
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $candidat->setUpdatedAt(new DateTimeImmutable());
@@ -50,8 +50,8 @@ dd($request);
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
             'form'=> $form,
-            'candidat'=>  $candidat
-
+            'candidat'=>  $candidat,
+           
         ]);
     }
 
