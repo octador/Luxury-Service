@@ -33,7 +33,7 @@ class CandidatType extends AbstractType
             ])
             ->add('birthPlace')
             ->add('shortDescription')
-            ->add('isAvailable')
+            // ->add('isAvailable')
             ->add('gender', EntityType::class, [
                 'class' => Gender::class,
                 'choice_label' => 'gender',

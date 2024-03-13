@@ -46,6 +46,7 @@ class ProfileController extends AbstractController
         
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $candidat->setUpdatedAt(new DateTimeImmutable());
             $passportFile = $form->get('passportfile')->getData();
 
@@ -53,7 +54,7 @@ class ProfileController extends AbstractController
                 $media = new Media();
                 $passportFileName = $fileUploader->upload($passportFile);
                 $media->setName($passportFileName);
-                $candidat->setCv($media);
+                $candidat->setPassport($media);
                 $entityManager->persist($media);
                 $entityManager->flush();
             }
@@ -72,7 +73,7 @@ class ProfileController extends AbstractController
                 $media = new Media();
                 $profilPictureName = $fileUploader->upload($profilPictureFile);
                 $media->setName($profilPictureName);
-                $candidat->setCv($media);
+                $candidat->setProfilPicture($media);
                 $entityManager->persist($media);
                 $entityManager->flush();
             }
