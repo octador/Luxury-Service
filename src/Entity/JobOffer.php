@@ -56,6 +56,9 @@ class JobOffer
     #[ORM\OneToMany(targetEntity: Apply::class, mappedBy: 'jobOffer')]
     private Collection $applies;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $position = null;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
@@ -237,6 +240,18 @@ class JobOffer
                 $apply->setJobOffer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPosition(): ?string
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?string $position): static
+    {
+        $this->position = $position;
 
         return $this;
     }

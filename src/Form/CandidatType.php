@@ -47,7 +47,7 @@ class CandidatType extends AbstractType
                 'required' => false
             ])
 
-            ->add('profilPicture', FileType::class, [
+            ->add('profilPictureFile', FileType::class, [
                 'mapped' => false,
                 'required' => false
             ])

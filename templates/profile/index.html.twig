@@ -164,27 +164,42 @@
                             </div>
                         </div>
                     </div>
-{# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!insertphoto NE MARCE PAS!!!!!!!!!!!!!!!!!!!!!!!!!!              #}
+
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="file-field input-field"
-                                 style="margin-top: 32px;">
+                                    style="margin-top: 32px;">
+                                    {#  PHOTO #}
                                 <div class="btn btn-lg primary waves-effect waves-light">
-
-                                     <span><i class="material-icons">insert_photo</i> Photo</span>
-                                   {# <input id="photo" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="photo" type="file"> #}
-                                    
+                                    {{ form_widget(form.profilPictureFile,
+                                            {
+                                            'type': 'file',
+                                            'attr': {
+                                                'class': 'form-control active',
+                                                'name': 'photo',
+                                                'id': 'photo',
+                                                'size':'20000000',
+                                                'accept':'.pdf,.jpg,.doc,.docx,.png,.gif',                                   
+                                                }
+                                            }) 
+                                    }}
+                                    <span><i class="material-icons">insert_photo</i> Photo</span>
                                 </div>
-{# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!profilePicture NE MARCE PAS!!!!!!!!!!!!!!!!!!!!!!!!!!              #}
-                                <div class="existing-file">
-                                {{ form_widget(form.profilPicture) }}
-                                    <a href="{{ asset('uploads/passport/' ~ candidat.profilPicture.name?candidat.profilPicture.name:'c\'est de la merde ton code') }}" target="_blank">
-                                    <i class="material-icons">&#xE24D;</i>
-                                    {{candidat.profilPicture.name}}</a>
 
+                                <div class="existing-file">
+
+                                {% if candidat.profilPicture %}
+
+                                    <a href="{{ asset('uploads/passport/' ~ candidat.profilPicture.name) }}" target="_blank"><i class="material-icons">&#xE24D;</i> {{ candidat.profilPicture.name ? candidat.profilPicture.name : ' ' }}</a>
+                                
+                                {% endif %}
+
+
+
+                                  
                                 </div>
                                 <div class="file-path-wrapper">
-                                    {# <input class="file-path validate" type="text" placeholder="Upload your ID photo" readonly> #}
+                                    <input class="file-path validate" type="text" placeholder="Upload your ID photo" readonly>
                                 </div>
                             </div>
                         </div>
@@ -246,15 +261,12 @@
                     <div class="row mt-40">
                         <h3 class="text-extrabold">Your professional profile</h3>
                         <div class="col-xs-12 col-sm-6">
-{# -------------------------------Passport MARHCE ------------------------------ #}
-                            <div class="card card-panel passport dflex">
 
-                                <div class="file-field input-field ">
-
+                           <div class="card card-panel passport">
+                                <div class="file-field input-field">
+                                {# PASSPORT #}
                                     <div class="btn btn-lg primary waves-effect waves-light">
-                                        <span><i class="material-icons">&#xE24D;</i> Passport</span>
-
-                                      {{ form_widget(form.passportfile,
+                                            {{ form_widget(form.passportfile,
                                             {
                                             'type': 'file',
                                             'attr': {
@@ -267,27 +279,26 @@
 
                                             }) 
                                             }}
-                                    </div>
 
+                                        <span><i class="material-icons">&#xE24D;</i> Passport</span>
+                                    </div>
                                     <div class="existing-file">
-
-                                        <a href="{{ asset('uploads/passport/' ~ candidat.passport.name ? candidat.passport.name : 'c\'est de la merde ton code') }}" target="_blank">
-                                        <i class="material-icons">&#xE24D;</i> {{ candidat.passport.name }}</a>
-
-
+                                    {% if candidat.passport %}
+                                        <a href="{{ asset('uploads/medias/' ~ candidat.passport.name) }}" target="_blank"><i class="material-icons">&#xE24D;</i> {{ candidat.passport.name ? candidat.passport.name : ' ' }}</a>
+                                    {% endif %}
+                                        
                                     </div>
-                                    
-                                  {#   <div class="file-path-wrapper">
-
-                                        <input class="file-path validate" type="text" placeholder="Upload your 
-                                        passport" readonly>
-                                   
-                                    </div> #}
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Upload your passport" readonly>
+                                    </div>
                                 </div>
-{# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!cv NE MARCHE PAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #}
+                                
+                                {# CV #}
                                 <div class="file-field input-field">
-                                <div class="btn btn-lg primary waves-effect waves-light">
-                                    {{ form_widget(form.cvfile, {
+                              
+                                    <div class="btn btn-lg primary waves-effect waves-light">
+                                        {{ form_widget(form.cvfile,
+                                            {
                                             'type': 'file',
                                             'attr': {
                                                 'class': 'form-control active',
@@ -298,21 +309,19 @@
                                                 }
 
                                             }) 
-                                            }}
-                                    
+                                        }}
                                         <span><i class="material-icons">&#xE24D;</i> CV</span>
-                                        
-
                                     </div>
 
                                     <div class="existing-file">
-                                       <a href="{{ asset('uploads/passport/' ~ candidat.cv.name?candidat.cv.name:'c\'est de la merde ton code') }}" target="_blank">
-                                       <i class="material-icons">&#xE24D;</i> {{candidat.cv.name}}</a>
+                                    {% if candidat.cv %}
+                                        <a href="{{ asset('uploads/medias/' ~ candidat.cv.name) }}" target="_blank"><i class="material-icons">&#xE24D;</i> {{ candidat.cvname}}</a>
+                                    {% endif %}
+                                       
                                     </div>
-
-                                    {# <div class="file-path-wrapper">
+                                    <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text" placeholder="Upload your Curriculum Vitae" readonly>
-                                    </div> #}
+                                    </div>
                                 </div>
 
                             </div>

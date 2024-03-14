@@ -68,7 +68,7 @@ class ProfileController extends AbstractController
                 $entityManager->persist($media);
                 $entityManager->flush();
             }
-            $profilPictureFile = $form->get('profilPicture')->getData();
+            $profilPictureFile = $form->get('profilPictureFile')->getData();
             if($profilPictureFile) {
                 $media = new Media();
                 $profilPictureName = $fileUploader->upload($profilPictureFile);
