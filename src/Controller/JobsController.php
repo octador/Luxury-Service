@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\JobOffer;
+use App\Repository\ApplyRepository;
 use App\Repository\CandidatRepository;
 use App\Repository\JobCategoryRepository;
 use App\Repository\JobOfferRepository;
@@ -28,17 +29,21 @@ class JobsController extends AbstractController
     }
     #[Route('/jobs/show/{id}', name: 'app_show')]
     public function show(JobOffer $job,
-    JobOfferRepository $jobCategoryRepository,
+    JobOfferRepository $jobofferRepository,ApplyRepository $applyRepository,CandidatRepository $candidatRepository
     ): Response
     {
        
-        $alljobs = $jobCategoryRepository->findAll();
+        $alljobs = $jobofferRepository->findAll();
+        $allAppliesByJob = $applyRepository-> findBy(['jobOffer'=>$job]);
+        $candidats = $candidatRepository->findAll();
 
 
         return $this->render('/jobs/show.html.twig', [
             'controller_name' => 'JobsController',
             'job' => $job,
-            'alljobs'=> $alljobs
+            'alljobs'=> $alljobs,
+            'allAppliesByJob' => $allAppliesByJob,
+            'candidats' => $candidats
         ]);
     }
 }

@@ -32,9 +32,7 @@
                         <li class="active waves-effect waves-light" data-group="all">All</li>
                     {% for jobCategory in jobsCategories %}
                         <li class=" waves-effect waves-light" data-group="{{jobCategory.category|lower}}">{{jobCategory.category}}</li>
-                    {% endfor %}
-                        
-                        
+                    {% endfor %}       
                     </ul>
                     <div class="portfolio portfolio-with-title col-2 gutter mt-30">
                         {% for job in jobs %}

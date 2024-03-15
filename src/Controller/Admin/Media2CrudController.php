@@ -8,20 +8,21 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class MediaCrudController extends AbstractCrudController
+class Media2CrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
         return Media::class;
     }
 
-    
+    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideWhenCreating()->hideWhenUpdating(),
-            TextField::new('name'),
+            IdField::new('id'),
+            TextField::new('title'),
+            TextEditorField::new('description'),
         ];
     }
-    
+    */
 }

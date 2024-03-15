@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Apply;
+use App\Entity\Candidat;
 use App\Entity\Client;
 use App\Entity\Experience;
 use App\Entity\Gender;
@@ -11,6 +13,7 @@ use App\Entity\JobType;
 use App\Entity\Media;
 use App\Entity\Status;
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -19,27 +22,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
-{
+{   // Injectez l'EntityManagerInterface pour récupérer des données depuis la base de données
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        // return parent::index();
-
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-         return $this->render('admin/dashboard.html.twig');
+        $userRepos = $this->entityManager->getRepository(Candidat::class);
+        $users = $userRepos->findAll();
+        
+         return $this->render('admin/dashboard.html.twig',[
+            'users'=> $users
+         ]);
     }
 
     public function configureDashboard(): Dashboard
@@ -60,6 +61,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('JobOffer', 'fa-solid fa-pen-nib', JobOffer::class);
         yield MenuItem::linkToCrud('User', 'fa-solid fa-user-check', User::class);
         yield MenuItem::linkToCrud('Media', 'fa-solid fa-photo-film', Media::class);
-
+        yield MenuItem::linkToCrud('Apply', 'fa-solid fa-check-to-slot', Apply::class);
+        yield MenuItem::linkToCrud('Candidat', 'fa-solid fa-person-circle-check', Candidat::class);
     }
+
 }

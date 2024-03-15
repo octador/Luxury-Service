@@ -43,9 +43,7 @@ class ApplyController extends AbstractController
         $entityManagerInterface ->persist($apply);
         $entityManagerInterface ->flush();
 
-        return $this->render('apply/index.html.twig', [
-            'controller_name' => 'ApplyController',
-            'jobofferId'=> $jobofferId
-        ]);
+        return $this->redirectToRoute('app_show', ['id' => $jobOffer->getId()]);
+
     }
 }
