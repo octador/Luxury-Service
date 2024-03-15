@@ -26,21 +26,19 @@ class JobsController extends AbstractController
             'jobsCategories'=> $jobsCategories
         ]);
     }
-    #[Route('/jobs/show/{userId}/{jobofferid}', name: 'app_show')]
-    public function show($userId, $jobofferid,
-    UserRepository $userRepository,
+    #[Route('/jobs/show/{id}', name: 'app_show')]
+    public function show(JobOffer $job,
     JobOfferRepository $jobCategoryRepository,
-    CandidatRepository $candidatRepository): Response
+    ): Response
     {
-        $job = $jobCategoryRepository->findOneBy(array ('id' => $userId));
-        $user = $userRepository->findOneBy(array('id'=>$userId));
-        $candidat = $candidatRepository->findOneBy(array('user'=>$user));
+       
+        $alljobs = $jobCategoryRepository->findAll();
+
 
         return $this->render('/jobs/show.html.twig', [
             'controller_name' => 'JobsController',
-            'jobofferid'=> $jobofferid,
-            'candidat'=> $candidat,
-            'job' => $job
+            'job' => $job,
+            'alljobs'=> $alljobs
         ]);
     }
 }

@@ -19,8 +19,8 @@ class ApplyController extends AbstractController
      /**
      * @Route("/apply/{userId}/{jobId}", name="app_apply")
      */
-    #[Route('/apply/{userId}/{jobOfferId}', name: 'app_apply')]
-    public function index($userId, $jobOfferId, UserRepository $userRepository,
+    #[Route('/apply/{userId}/{jobofferId}', name: 'app_apply')]
+    public function index($userId, $jobofferId, UserRepository $userRepository,
                             CandidatRepository $candidatRepository,
                             JobOfferRepository $jobOfferRepository,
                             StatusRepository $statusRepository,
@@ -30,10 +30,10 @@ class ApplyController extends AbstractController
 
         $candidat = $candidatRepository -> findOneby(array('user'=> $user));
 
-        $jobOffer = $jobOfferRepository -> findOneby(array('id' => $jobOfferId));
+        $jobOffer = $jobOfferRepository -> findOneby(array('id' => $jobofferId));
 
         $status = $statusRepository ->findOneBy(array('status' => 'pending'));
-        
+
         $apply = new Apply;
         $apply -> setCandidat($candidat);
         $apply ->setJobOffer($jobOffer);
@@ -45,6 +45,7 @@ class ApplyController extends AbstractController
 
         return $this->render('apply/index.html.twig', [
             'controller_name' => 'ApplyController',
+            'jobofferId'=> $jobofferId
         ]);
     }
 }

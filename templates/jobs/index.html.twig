@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="card-action">
 
-                                        <a class="btn btn-md primary border waves-effect waves-dark"href="{{ path('app_show',{'userId' : app.user.id, 'jobofferid': job.id }) }}">Details</a>
+                                        <a class="btn btn-md primary border waves-effect waves-dark"href="{{ path('app_show',{'id' : job.id }) }}">Details</a>
                                         <a class="btn btn-md primary waves-effect waves-light"
                                     {# TO DO ajoute un apply #}
                                         {% if app.user %}
