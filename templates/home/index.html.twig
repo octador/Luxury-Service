@@ -307,7 +307,7 @@
                                         <p class="truncate-text">{{job.description|striptags}}</p>
                                     </div>
                                     <div class="card-action">
-                                        <a class="btn btn-md primary border waves-effect waves-dark"href={{ path("app_show",{'id':job.id}) }}>Details</a>
+                                        <a class="btn btn-md primary border waves-effect waves-dark"href={{ path("app_show",{'userId':job.id,'jobofferid': job.id}) }}>Details</a>
 
                                         <a class="btn btn-md primary waves-effect waves-light" 
                                         {% if app.user %}

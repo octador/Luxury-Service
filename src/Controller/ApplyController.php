@@ -33,7 +33,7 @@ class ApplyController extends AbstractController
         $jobOffer = $jobOfferRepository -> findOneby(array('id' => $jobOfferId));
 
         $status = $statusRepository ->findOneBy(array('status' => 'pending'));
-        // dd($status);
+        
         $apply = new Apply;
         $apply -> setCandidat($candidat);
         $apply ->setJobOffer($jobOffer);

@@ -49,7 +49,7 @@
                                 <li><span> Location </span>{{job.location}}</li>
                                 <li><span> Starting date </span>{{job.createdAt|date('Y-m-d H:i:s')}}</li>
                             </ul>
-                            <a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="{{ path('app_apply',{'userId' : app.user.id, 'jobOfferid': job.id }) }}">Apply for this job</a>
+                            <a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="{{ path('app_show',{'userId' : app.user.id, 'jobofferid': job.id }) }}">Apply for this job</a>
                             <div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You have applied for this job</div>
                         </div>
                     </div>
