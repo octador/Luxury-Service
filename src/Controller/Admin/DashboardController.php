@@ -35,11 +35,25 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        $userRepos = $this->entityManager->getRepository(Candidat::class);
+        $userRepos = $this->entityManager->getRepository(User::class);
         $users = $userRepos->findAll();
+        $candidatsRepos= $this->entityManager->getRepository(Candidat::class);
+        $candidats = $candidatsRepos->findAll();
+        $clientrepos = $this->entityManager->getRepository(Client::class);
+        $clients = $clientrepos->findAll();
+        $candiaturerepos = $this->entityManager->getRepository(Apply::class);
+        $candidatures = $candiaturerepos->findall();
+        $postrepos = $this->entityManager->getRepository(JobOffer::class);
+        $posts = $postrepos->findAll();
+
+        
         
          return $this->render('admin/dashboard.html.twig',[
-            'users'=> $users
+            'users'=> $users,
+            'candidats'=> $candidats,
+            'clients'=> $clients,
+            'candidatures'=> $candidatures,
+            'posts'=> $posts,
          ]);
     }
 
