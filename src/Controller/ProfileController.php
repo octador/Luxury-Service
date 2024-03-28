@@ -28,6 +28,7 @@ class ProfileController extends AbstractController
         ): Response
     {
         $id = $user->getId();
+        
         $candidat = $candidatRepository->findOneByUserId($id);
         
         if (!$candidat) {

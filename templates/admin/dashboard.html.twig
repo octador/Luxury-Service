@@ -4,25 +4,6 @@
     <p>Nombre de clients: {{clients|length}}</p>
     <p>Nombre d'utlisateurs: {{users|length}}</p>
     <p>Nombre de candidats: {{candidats|length}}</p>
-    {# <p>Nombre de candidature: {{applies|length}}</p> #}
-
-    {# nombre de candidat par post #}
-    {# recuperer id candidat #}
-    {# le mettre dans une variable -> et prendre la variable pour trouver les jobs#}
-    {# {% set postid = [] %}
-    {% for post in posts %}
-    {{ dump(post.id) }}
-      {{postid = post.id}} #}
-    {# {% endfor %}
-{{ dump(postid) }}
-   {% set candidatforjob = [] %} #}
-
-      {#{% for candidat in candidats %}
-      {% set checkcandidat = candidat.id %}
-    {% endfor %} #}
-    
-    {# {% for candidature in candidatures %} #}
-    {# {{ dump( candidature.joboffer) }} #}
     {% endfor %}
 
 
