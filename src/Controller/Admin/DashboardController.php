@@ -22,7 +22,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
-{   // Injectez l'EntityManagerInterface pour récupérer des données depuis la base de données
+
+{
+    // Injectez l'EntityManagerInterface pour récupérer des données depuis la base de données
     private $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
